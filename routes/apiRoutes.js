@@ -13,7 +13,7 @@ router.get("/notes", (req, res) => {
 router.post("/notes", (req, res) => {
   store
     .addNote(req.body)
-    .then((note) => res.json(note))
+    .then(() => res.json({ ok: true }))
     .catch((err) => res.status(500).json(err));
 });
 

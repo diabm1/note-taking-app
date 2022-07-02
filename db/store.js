@@ -2,7 +2,8 @@ const util = require("util");
 const fs = require("fs");
 
 // package to generate UUID
-const uuid = require("uuid/v1");
+// const uuid = require("uuid/v1");
+const {v4:uuidv4} = require("uuid")
 
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -36,12 +37,12 @@ class Store {
       throw new Error("Note 'title' and 'text' cannot be blank");
     }
 
-    const newNote = { title, text, id: uuid() };
+    const newNote = { title, text, id: uuidv4() };
 
     return this.getNotes()
       .then((notes) => [...notes, newNote])
       .then((updateNotes) => this.write(updateNotes))
-      .then(() => newNotes);
+      .then(() => newNote);
   }
 
   removeNotes(id) {
