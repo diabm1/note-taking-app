@@ -2,7 +2,6 @@ const util = require("util");
 const fs = require("fs");
 
 // package to generate UUID
-// const uuid = require("uuid/v1");
 const {v4:uuidv4} = require("uuid")
 
 const readFileAsync = util.promisify(fs.readFile);
